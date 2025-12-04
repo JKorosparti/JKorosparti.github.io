@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="hu-HU">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>EbWare - Kutyapanzió</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-space-dynamic.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+    <style>
+    /* ===== Cookie banner alapstílusok ===== */
+    .cookie-banner {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      background: #1f2933;         /* sötét háttér */
+      color: #f9fafb;              /* világos szöveg */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .cookie-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cookie-main {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .cookie-emoji {
+      font-size: 1.7rem;
+      flex-shrink: 0;
+    }
+
+    .cookie-text h2 {
+      margin: 0 0 4px 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .cookie-text p {
+      margin: 0;
+      color: #f9fafb;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .cookie-link {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 0.85rem;
+      text-decoration: underline;
+      color: #e5e7eb;
+    }
+
+    .cookie-link:hover {
+      text-decoration: none;
+    }
+
+    .cookie-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .cookie-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cookie-btn-primary {
+      background: #10b981; /* zöld */
+      color: #111827;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+    }
+
+    .cookie-btn-primary:hover {
+      background: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(16, 185, 129, 0.5);
+    }
+
+    .cookie-btn-secondary {
+      background: transparent;
+      color: #e5e7eb;
+      border: 1px solid #4b5563;
+    }
+
+    .cookie-btn-secondary:hover {
+      background: #374151;
+    }
+
+    /* Beállítások panel */
+    .cookie-settings {
+      margin-top: 6px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #111827;
+      border: 1px solid #374151;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .cookie-settings p {
+      color: white;
+      margin: 0 0 6px 0;
+      line-height: 1.4;
+    }
+
+    .cookie-settings label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 4px 0 8px 0;
+      cursor: pointer;
+    }
+
+    .cookie-settings input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+
+    .cookie-settings .cookie-settings-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    /* Mobilbarát elrendezés */
+    @media (max-width: 640px) {
+      .cookie-main {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cookie-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* Elrejtéshez */
+    .cookie-hidden {
+      display: none !important;
+    }
+  </style>
+  
+    <!-- ===== Cookie banner ===== -->
+  <section
+    class="cookie-banner cookie-hidden"
+    id="cookieBanner"
+    role="dialog"
+    aria-live="polite"
+    aria-label="Süti hozzájárulás"
+  >
+    <div class="cookie-inner">
+      <div class="cookie-main">
+        <div class="cookie-emoji">🍪🐶</div>
+        <div class="cookie-text">
+          <h2>Sütik a gazdiknak és kutyusoknak</h2>
+          <p>
+            Ez az oldal sütiket használ, hogy a böngészés olyan zökkenőmentes legyen,
+            mint egy jól betanított kutya. A működéshez szükséges sütik
+            biztosítják az oldal stabil működését, a statisztikai sütik pedig segítenek
+            megérteni, mely tartalmak tetszenek legjobban a gazdiknak.
+          </p>
+          <!-- Itt módosítsd az útvonalat a saját cookie policy oldaladra -->
+          <a href="/cookie-policy.html" class="cookie-link">További információ a sütikről</a>
+        </div>
+
+        <div class="cookie-actions">
+          <button class="cookie-btn cookie-btn-primary" id="cookieAcceptAll">
+            ✅ Elfogadom
+          </button>
+          <button class="cookie-btn cookie-btn-secondary" id="cookieOpenSettings">
+            ⚙️ Beállítások
+          </button>
+        </div>
+      </div>
+
+      <div class="cookie-settings" id="cookieSettings">
+        <p>
+          <strong>Süti beállítások:</strong> A működéshez szükséges sütik mindig
+          aktívak, ezek nélkül az oldal nem működik megfelelően. Itt a
+          statisztikai sütik engedélyezéséről dönthetsz.
+        </p>
+
+        <label>
+          <input type="checkbox" id="cookieStatsCheckbox" checked>
+          Statisztikai sütik engedélyezése (anonim, a szolgáltatás fejlesztéséhez)
+        </label>
+
+        <div class="cookie-settings-actions">
+          <button class="cookie-btn cookie-btn-secondary" id="cookieCancelSettings">
+            Mégse
+          </button>
+          <button class="cookie-btn cookie-btn-primary" id="cookieSaveSettings">
+            Mentés
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "cookieConsentDogPanzio";
+
+      const banner = document.getElementById("cookieBanner");
+      const openSettingsBtn = document.getElementById("cookieOpenSettings");
+      const acceptAllBtn = document.getElementById("cookieAcceptAll");
+      const settingsPanel = document.getElementById("cookieSettings");
+      const statsCheckbox = document.getElementById("cookieStatsCheckbox");
+      const saveSettingsBtn = document.getElementById("cookieSaveSettings");
+      const cancelSettingsBtn = document.getElementById("cookieCancelSettings");
+
+      // Már van mentett döntés?
+      function getConsent() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function saveConsent(consent) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+        } catch (e) {
+          // ha valamiért nem sikerül, nem dobunk hibát a felhasználónak
+        }
+      }
+
+      function hideBanner() {
+        banner.classList.add("cookie-hidden");
+      }
+
+      function showBanner() {
+        banner.classList.remove("cookie-hidden");
+      }
+
+      function showSettings() {
+        settingsPanel.style.display = "block";
+      }
+
+      function hideSettings() {
+        settingsPanel.style.display = "none";
+      }
+
+      // Alap logika: ha nincs még döntés, mutatjuk a bannert
+      const existingConsent = getConsent();
+      if (!existingConsent) {
+        showBanner();
+      }
+
+      // „Elfogadom” – minden süti mehet
+      if (acceptAllBtn) {
+        acceptAllBtn.addEventListener("click", function () {
+          const consent = {
+            necessary: true,
+            statistics: true,
+            timestamp: new Date().toISOString()
+          };
+          saveConsent(consent);
+          hideBanner();
+        });
+      }
+
+      // Beállítások megnyitása
+      if (openSettingsBtn) {
+        openSettingsBtn.addEventListener("click", function () {
+          if (settingsPanel.style.display === "block") {
+            hideSettings();
+          } else {
+            showSettings();
+          }
+        });
+      }
+
+      // Beállítások mentése
+      if (saveSettingsBtn) {
+        saveSettingsBtn.addEventListener("click", function () {
+          const consent = {
+            necessary: true,
+            statistics: !!statsCheckbox.checked,
+            timestamp: new Date().toISOString()
+          };
+          saveConsent(consent);
+          hideBanner();
+        });
+      }
+
+      // Mégse – csak elrejti a panelt, a banner marad
+      if (cancelSettingsBtn) {
+        cancelSettingsBtn.addEventListener("click", function () {
+          hideSettings();
+        });
+      }
+    })();
+  </script>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.5s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <h4>Eb<span>Ware</span></h4>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class=nav>
+          <li><a href="index.html">Főoldal</a></li>
+          <li><a href="szolgaltatasaink.html">Szolgáltatásaink</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="kapcsolat.html" class="active">Kapcsolat</a></li>
+            </ul> 
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <h2>Üdvözöljük az EbWare-nél</h2>
+                <h2>Kutyapanzió &amp; kutyanapközi</h2>
+                <h5>A legjobb hely ahol kedvencét tudhatja. Az Ön bizalma számunkra éppoly fontos, mint kedvence kényelme.</h5>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="assets/images/banner-right-image.png" alt="team meeting">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="about-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="left-image wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+            <img src="assets/images/about-left-image.png" alt="person graphic">
+          </div>
+        </div>
+        <div class="col-lg-8 align-self-center">
+          <div class="services">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                  <div class="right-text">
+                    <h4>1500+ elégedett gazdi és több ezer megőrzött kutya</h4>
+                    <p>Bizonyított szakértelem, tapasztalat és felelősségteljes gondoskodás</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                  <div class="right-text">
+                    <h4>Három városban, országos lefedettséggel</h4>
+                    <p>Szolgáltatásunk elérhető Budapesten, Debrecenben és Szegeden</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                  <div class="right-text">
+                    <h4>Élő kamerás betekintés bárhonnan, bármikor</h4>
+                    <p>Teljes átláthatóság és nyugalom gazdiknak.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                  <div class="right-text">
+                    <h4>2022 „Év Szolgáltatója” díj</h4>
+                    <p>Ügyfél-elégedettség és minőségi működés szakmai elismerése</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="portfolio" class="our-portfolio section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="section-heading wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+          <h2>Tekintse meg szolgáltatásainkat</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <!-- Napközi -->
+      <div class="col-lg-3 col-sm-6">
+        <a href="szolgaltatasaink.html#szolg-1">
+          <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="hidden-content">
+              <h4>Napközi</h4>
+              <ul>
+                <li><p>Nappali felügyelet</p></li>
+                <li><p>Csoportos játék</p></li>
+                <li><p>Etetés kérés szerint</p></li>
+                <li><p>08:00-18:00 között</p></li>
+              </ul>
+            </div>
+            <div class="showed-content">
+              <img src="assets/images/daycare.png" alt="">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Alap csomag -->
+      <div class="col-lg-3 col-sm-6">
+        <a href="szolgaltatasaink.html#szolg-2">
+          <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+            <div class="hidden-content">
+              <h4>Alap csomag</h4>
+              <ul>
+                <li><p>Teljes ellátás</p></li>
+                <li><p>Játék, séta</p></li>
+                <li><p>Etetés kérés szerint</p></li>
+                <li><p>Fotós visszajelzés</p></li>
+              </ul>
+            </div>
+            <div class="showed-content">
+              <img src="assets/images/hotel.jpg" alt="">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Prémium csomag -->
+      <div class="col-lg-3 col-sm-6">
+        <a href="szolgaltatasaink.html#szolg-3">
+          <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+            <div class="hidden-content">
+              <h4>Prémium csomag</h4>
+              <ul>
+                <li><p>Élő kamerás közvetítés</p></li>
+                <li><p>Extra hosszú séta</p></li>
+                <li><p>Egyéni foglalkozás</p></li>
+                <li><p>Videós visszajelzés</p></li>
+              </ul>
+            </div>
+            <div class="showed-content">
+              <img src="assets/images/premium.jpg" alt="">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Kutyakozmetika -->
+      <div class="col-lg-3 col-sm-6">
+        <a href="szolgaltatasaink.html#szolg-4">
+          <div class="item wow bounceInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+            <div class="hidden-content">
+              <h4>Kutyakozmetika</h4>
+              <ul>
+                <li><p>Fürdetés</p></li>
+                <li><p>Körömvágás</p></li>
+                <li><p>Szőrzetápolás</p></li>
+                <li><p>Trimmelés/nyírás</p></li>
+              </ul>
+            </div>
+            <div class="showed-content">
+              <img src="assets/images/grooming.png" alt="">
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="blog" class="our-blog section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.15s">
+        <div class="section-heading">
+          <h2>Olvasd a blogunk, hogy te is felelős gazdi legyél! Nézd meg múltbeli eseményeinket!</h2>
+        </div>
+      </div>
+      <div class="col-lg-6 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.15s">
+      </div>
+    </div>
+    <div class="row">
+      <!-- Bal oldali nagy cikk -->
+      <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.15s">
+        <div class="left-image">
+          <a href="blog.html#cikk-1">
+            <img src="assets/images/big-blog-thumb.jpg" alt="Workspace Desktop">
+          </a>
+          <div class="info">
+            <div class="inner-content">
+              <ul>
+                <li><i class="fa fa-calendar"></i> 2024 Feb 5</li>
+                <li><i class="fa fa-users"></i> Kutyadoki</li>
+                <li><i class="fa fa-folder"></i> Állategészség</li>
+              </ul>
+              <a href="blog.html#cikk-1">
+                <h4>10 dolog amit tehetsz kutyád egészségéért</h4>
+              </a>
+              <p>A kutyák egészségének megőrzése érdekében rendszeres állatorvosi ellenőrzésekre, megfelelő táplálásra és testmozgásra van szükség, emellett figyelni kell a kutya viselkedésére és testi jelekre</p>
+              <div class="main-blue-button">
+                <a href="blog.html#cikk-1">Fedezz fel többet</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jobb oldali lista -->
+      <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.15s">
+        <div class="right-list">
+          <ul>
+            <li>
+              <div class="left-content align-self-center">
+                <span><i class="fa fa-calendar"></i> 2025 jún 14</span>
+                <a href="blog.html#cikk-2">
+                  <h4>Kutyameleg van! 5 módszer, amivel hűtheted kedvencedet</h4>
+                </a>
+                <p>A nyári forróság számos veszélyt hordoz magában. Nem lehet elégszer kiemelni, mennyire fontos, hogy biztonságos környezetet teremts a kánikulában.</p>
+              </div>
+              <div class="right-image">
+                <a href="blog.html#cikk-2">
+                  <img src="assets/images/blog-thumb-01.jpg" alt="">
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="left-content align-self-center">
+                <span><i class="fa fa-calendar"></i> 2025 okt 31</span>
+                <a href="blog.html#cikk-3">
+                  <h4>Halloweeni parti az EbWare-nél</h4>
+                </a>
+                <p>Idén is rengetegen öltöztették fel kutyáikat Halloween alkalmából...</p>
+              </div>
+              <div class="right-image">
+                <a href="blog.html#cikk-3">
+                  <img src="assets/images/costumed-dog-halloween.jpg" alt="">
+                </a>
+              </div>
+            </li>
+            <li>
+              <div class="left-content align-self-center">
+                <span><i class="fa fa-calendar"></i> 2025 dec 24</span>
+                <a href="blog.html#cikk-4">
+                  <h4>Karácsony kedvencekkel</h4>
+                </a>
+                <p>Ünnepeljük együtt a karácsonyt kedvenceinkkel, hiszen ők is a család részei!</p>
+              </div>
+              <div class="right-image">
+                <a href="blog.html#cikk-4">
+                  <img src="assets/images/christmas.jpg" alt="">
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.15s">
+          <div class="section-heading">
+            <h2>Fordoluljon hozzánk bizalommal bármilyen egyedi kérés esetén</h2>
+            <h5>Kedvencének különleges táp kell, netán orvosi ellátásra van szüksége? Több kutyát hozna egyszerre? Mi segítünk, lépjen velünk kapcsolatba!</h5>
+            <div class="phone-info">
+              <h4>Hívjon minket bizalommal: <span><i class="fa fa-phone"></i> <a href="#">+36-20-1234-5678</a></span></h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.15s">
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-lg-6">
+                <fieldset>
+                  <input type="name" name="name" id="name" placeholder="Vezetéknév" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <input type="surname" name="surname" id="surname" placeholder="Keresztnév" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="email cím" required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <textarea name="message" type="text" class="form-control" id="message" placeholder="Üzenet" required=""></textarea>  
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="main-button ">Üzenet küldése</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.15s">
+          <p>© <span id="year"></span> EbWare Kft. Minden jog fenntartva.</p> 
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Scripts -->
+   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/imagesloaded.js"></script>
+  <script src="assets/js/templatemo-custom.js"></script>
+
+</body>
+</html>

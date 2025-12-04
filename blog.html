@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="hu-HU">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>EbWare - Kutyapanzió</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-space-dynamic.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+  <style>
+
+/* ===== CIKKDOBOZ (50px-el nagyobb) ===== */
+.blog-article {
+  max-width: 880px; /* 800 + 80 = 50px mindkét oldalon + padding */
+  margin: 0 auto 90px auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  padding: 50px 40px;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ===== KOMMENT DOBOZ (50px-el kisebb) ===== */
+.comment-box {
+  max-width: 800px;
+  margin: 40px auto 0 auto;
+  padding: 25px;
+  background: #f9fafb;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+/* ===== HEADLINE ===== */
+.blog-article-header h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.blog-article-meta {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+.blog-tag {
+  background: #e6f0ff;
+  color: #1e3a8a;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+/* ===== CIKK SZÖVEG ===== */
+.blog-article-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #111827;
+}
+.blog-article-body h3 {
+  margin-top: 24px;
+  font-size: 1.3rem;
+}
+
+/* ===== LIKE / DISLIKE ===== */
+.reaction-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.reaction-button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #e5e7eb;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reaction-button:hover {
+  background: #d1d5db;
+}
+
+.reaction-button.active-like {
+  background: #4ade80;
+  color: #064e3b;
+}
+.reaction-button.active-dislike {
+  background: #fca5a5;
+  color: #7f1d1d;
+}
+
+/* Like/Dislike számlálók */
+.reaction-count {
+  font-weight: bold;
+  color: #374151;
+  padding-left: 3px;
+}
+
+/* ===== HOZZÁSZÓLÁS ===== */
+.comment-box h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.comment-box textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  resize: vertical;
+}
+.submit-comment {
+  margin-top: 10px;
+  background: #2563eb;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+.submit-comment:hover {
+  background: #1e40af;
+}
+
+/* ===== Komments ===== */
+.comments-list {
+  margin-top: 20px;
+}
+.comment {
+  background: #eef2ff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.comment-text {
+  max-width: 90%;
+}
+.comment-delete {
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.comment-delete:hover {
+  color: #7f1d1d;
+}
+
+</style>
+
+
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.5s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <h4>Eb<span>Ware</span></h4>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class=nav>
+          <li><a href="index.html">Főoldal</a></li>
+          <li><a href="szolgaltatasaink.html">Szolgáltatásaink</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="kapcsolat.html" class="active">Kapcsolat</a></li>
+            </ul> 
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <h2>Olvasd el a legfrissebb bejegyzéseinket. Tudd meg mi a legjobb a kedvencednek, értesülj közelgő eseményeinkről!</h2>
+                <h5></h5>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="assets/images/blog.png" alt="team meeting">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="blog" class="our-blog section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.15s">
+          <div class="section-heading">
+            <h2>Olvasd a blogunk, hogy te is felelős gazdi legyél! Nézd meg múltbeli eseményeinket!</h2>
+          </div>
+        </div>
+        <div class="col-lg-6"></div>
+      </div>
+
+      <div class="row">
+        <!-- Nagy fő cikk -->
+        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.15s">
+          <div class="left-image">
+            <a href="#cikk-1"><img src="assets/images/big-blog-thumb.jpg" alt=""></a>
+            <div class="info">
+              <div class="inner-content">
+                <ul>
+                  <li><i class="fa fa-calendar"></i> 2024 Feb 5</li>
+                  <li><i class="fa fa-users"></i> Kutyadoki</li>
+                  <li><i class="fa fa-folder"></i> Állategészség</li>
+                </ul>
+                <a href="#cikk-1"><h4>10 dolog amit tehetsz kutyád egészségéért</h4></a>
+                <p>A kutya egészsége a mindennapokban dől el. Megmutatjuk a 10 legfontosabb tennivalót!</p>
+                <div class="main-blue-button">
+                  <a href="#cikk-1">Fedezz fel többet</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jobb oldali 3 cikk -->
+        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.15s">
+          <div class="right-list">
+            <ul>
+              <li>
+                <div class="left-content align-self-center">
+                  <span><i class="fa fa-calendar"></i> 2025 jún 14</span>
+                  <a href="#cikk-2"><h4>Kutyameleg van! 5 módszer, amivel hűtheted kedvencedet</h4></a>
+                  <p>A legjobb módszerek a nyári hőség elleni védekezésre.</p>
+                </div>
+                <div class="right-image">
+                  <a href="#cikk-2"><img src="assets/images/blog-thumb-01.jpg" alt=""></a>
+                </div>
+              </li>
+
+              <li>
+                <div class="left-content align-self-center">
+                  <span><i class="fa fa-calendar"></i> 2025 okt 31</span>
+                  <a href="#cikk-3"><h4>Halloweeni parti az EbWare-nél</h4></a>
+                  <p>Fantasztikus jelmezekkel és jó hangulattal vártuk a gazdikat!</p>
+                </div>
+                <div class="right-image">
+                  <a href="#cikk-3"><img src="assets/images/costumed-dog-halloween.jpg" alt=""></a>
+                </div>
+              </li>
+
+              <li>
+                <div class="left-content align-self-center">
+                  <span><i class="fa fa-calendar"></i> 2025 dec 24</span>
+                  <a href="#cikk-4"><h4>Karácsony kedvencekkel</h4></a>
+                  <p>Meghitt ünnep a család négylábú tagjaival.</p>
+                </div>
+                <div class="right-image">
+                  <a href="#cikk-4"><img src="assets/images/christmas.jpg" alt=""></a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<!-- ===== BLOG CIKKEK RÉSZ – ANCHOROKKAL, SZEBB KINÉZETTEL ===== -->
+<div id="blog-cikkek" class="section">
+
+  <!-- CIKK 1 -->
+  <div id="cikk-1" class="blog-article">
+    <div class="blog-article-header">
+      <h2>10 dolog amit tehetsz kutyád egészségéért</h2>
+      <div class="blog-article-meta">
+        2024. február 5. • Kutyadoki • <span class="blog-tag">Állategészség</span>
+      </div>
+    </div>
+
+    <div class="blog-article-image">
+      <img src="assets/images/big-blog-thumb.jpg" alt="Gazdi és kutya az állatorvosnál">
+    </div>
+
+    <div class="blog-article-body">
+      <p>
+        A kutyád egészsége nem csak az állatorvosnál dől el, hanem a mindennapi szokásokban: hogyan eteted, mennyit mozog,
+        mennyire figyelsz a jelzéseire. Az alábbi 10 ponttal végigvesszük, mit tehetsz azért, hogy kedvenced hosszú,
+        egészséges és boldog életet éljen melletted.
+      </p>
+
+      <h3>1. Rendszeres állatorvosi kontroll</h3>
+      <p>
+        Akkor is érdemes évente legalább egyszer elvinni a kutyát kontrollra, ha teljesen egészségesnek tűnik. Sok betegség
+        eleinte alig okoz tünetet, viszont időben felismerve könnyebben kezelhető. A védőoltások, féreghajtás és általános
+        állapotfelmérés mind részei a rutinnak.
+      </p>
+
+      <h3>2. Minőségi, életkornak megfelelő táplálás</h3>
+      <p>
+        Kölyök, felnőtt vagy idős kutya – mindegyiknek más a tápanyagszükséglete. Válassz minőségi tápot, figyeld az összetevőket,
+        és kerüld a túl sok asztali maradékot. Az elhízás komoly terhet ró az ízületekre és a szívre is.
+      </p>
+
+      <h3>3. Friss ivóvíz mindig elérhetően</h3>
+      <p>
+        A víz legalább annyira fontos, mint az eledel. Mindig legyen előtte friss, tiszta ivóvíz, különösen nyáron vagy intenzív
+        mozgás után. A kiszáradás gyorsan gondot okozhat, főleg kölyök és idős kutyáknál.
+      </p>
+
+      <h3>4. Rendszeres, változatos mozgás</h3>
+      <p>
+        A napi séta nem csak „pisilős kör”. Mozgás, szaglászás, új ingerek – ezek mind kellenek a mentális kiegyensúlyozottsághoz.
+        A fajtától és kortól függően eltérő a mozgásigény, de minden kutyának szüksége van napi aktivitásra.
+      </p>
+
+      <h3>5. Fogápolás és szájhigiénia</h3>
+      <p>
+        A fogkő, gyulladt íny és a rossz lehelet nem csak esztétikai probléma. A szájüregi gondok hosszú távon a belső szerveket
+        is érinthetik. Fogkefe, fogtisztító jutalomfalat, speciális rágók – mind segíthetnek a megelőzésben.
+      </p>
+
+      <h3>6. Élősködők elleni védelem</h3>
+      <p>
+        Bolhák, kullancsok, szúnyogok – mind-mind betegségeket terjeszthetnek. Érdemes a szezonban folyamatos védelmet
+        biztosítani spot-on, nyakörv vagy tabletta formájában, állatorvossal egyeztetve.
+      </p>
+
+      <h3>7. Féreghajtás</h3>
+      <p>
+        A belső paraziták jelenléte sokszor láthatatlan marad, mégis megterheli a szervezetet. Kölyökkortól kezdve,
+        rendszeres féreghajtásra van szükség az ajánlott ütemezés szerint.
+      </p>
+
+      <h3>8. Ideális testsúly megtartása</h3>
+      <p>
+        Ha nehezen tapinthatók ki a bordák, vagy „pocakosnak” tűnik a kutya, könnyen lehet, hogy túlsúlyos. A megfelelő
+        adagolás, kevesebb jutalomfalat és több mozgás segít visszaállítani az ideális testalkatot.
+      </p>
+
+      <h3>9. Biztonságos, nyugodt környezet</h3>
+      <p>
+        A stressz az állatoknál is gyengíti az immunrendszert. Legyen a kutyának saját, nyugodt pihenőhelye, és próbálj
+        következetes, kiszámítható rutint kialakítani számára.
+      </p>
+
+      <h3>10. Figyelj a viselkedésbeli változásokra</h3>
+      <p>
+        Ha a kutya hirtelen visszahúzódó, kedvetlen lesz, megváltozik az étvágya, mozgása, vagy furcsán viselkedik, az
+        sokszor első jele valamilyen problémának. Inkább kérdezd meg az állatorvost egy „feleslegesnek tűnő” alkalommal is,
+        mint hogy késő legyen.
+      </p>
+
+      <p><strong>Összefoglalva:</strong> a kutyád egészsége azon múlik, mennyire figyelsz rá a hétköznapokban. A szeretet mellett
+      a tudatos gondoskodás is része annak, hogy hosszú éveken át társként lehessen melletted.</p>
+
+<!-- REACTION + COMMENTS (CIKK 1) -->
+<div class="reaction-buttons" data-article="cikk1">
+  <button class="reaction-button like-btn">👍 Tetszik <span class="reaction-count like-count">0</span></button>
+  <button class="reaction-button dislike-btn">👎 Nem tetszik <span class="reaction-count dislike-count">0</span></button>
+</div>
+
+<div class="comment-box" data-article="cikk1">
+  <h3>Szólj hozzá a cikkhez:</h3>
+  <textarea placeholder="Írd meg a véleményed..."></textarea>
+  <button class="submit-comment">Hozzászólás küldése</button>
+
+  <div class="comments-list"></div>
+</div>
+
+
+    </div>
+  </div>
+
+
+  <!-- CIKK 2 -->
+  <div id="cikk-2" class="blog-article">
+    <div class="blog-article-header">
+      <h2>Kutyameleg van! 5 módszer, amivel hűtheted kedvencedet</h2>
+      <div class="blog-article-meta">
+        2025. június 14. • <span class="blog-tag">Nyári tippek</span>
+      </div>
+    </div>
+
+    <div class="blog-article-image">
+      <img src="assets/images/blog-thumb-01.jpg" alt="Kutyus hűsöl a nyári melegben">
+    </div>
+
+    <div class="blog-article-body">
+      <p>
+        A nyári hőség a kutyák számára különösen megterhelő, hiszen ők nem tudnak úgy izzadni, mint mi. A lihegés és a
+        tappancsokon keresztüli hőleadás sokszor nem elég. Ezért fontos, hogy tudatosan segítsd kedvencedet átvészelni a
+        kánikulát.
+      </p>
+
+      <h3>1. Friss víz mindenhol, minden időben</h3>
+      <p>
+        Mindig legyen a kutya előtt friss víz, sőt, nagy melegben érdemes több tálat is kitenni. Hosszabb utazásnál vagy
+        sétánál vigyél magaddal kulacsot és összehajtható tálat.
+      </p>
+
+      <h3>2. Séták időzítése: reggel és este</h3>
+      <p>
+        A déli órákban könnyen felforrósodik az aszfalt, ami nem csak kellemetlen, de komoly égési sérülést is okozhat a
+        tappancsokon. Inkább kora reggel vagy késő este sétáljatok, amikor a levegő és a talaj is hűvösebb.
+      </p>
+
+      <h3>3. Hűtőmatrac, vizes törölköző, árnyékos kuckó</h3>
+      <p>
+        A hűtőmatracok vagy nedves, hűvös törölközők sokat segíthetnek. Fontos azonban, hogy a kutyának legyen választása:
+        ha fázni kezd, legyen hova átmennie. A lakásban is próbálj számára egy hűvös, árnyékos pihenőhelyet kialakítani.
+      </p>
+
+      <h3>4. Soha, semmilyen körülmények között ne hagyd az autóban!</h3>
+      <p>
+        Még lehúzott ablak mellett, árnyékban is percek alatt életveszélyes hőmérséklet alakulhat ki az autóban. Ha ügyet
+        intézel, inkább hagyd otthon a kutyát a hűvös lakásban.
+      </p>
+
+      <h3>5. Ismerd fel a hőguta jeleit</h3>
+      <p>
+        A túlzott lihegés, nyálzás, bizonytalan mozgás, gyengeség, hányás vagy eszméletvesztés mind súlyos túlhevülésre
+        utalhatnak. Ha ilyet tapasztalsz, azonnal keresd az állatorvost, és közben próbáld fokozatosan hűteni a kutyát –
+        sose jeges vízzel, hanem fokozatosan, óvatosan.
+      </p>
+
+      <p><strong>Egy kis plusz tipp:</strong> a nyári napokon kevesebb, de könnyebb étkezés is segíthet, és kerüld a nagyon
+      intenzív játékot a legmelegebb órákban.</p>
+
+      <!-- REACTION + COMMENTS (CIKK 2) -->
+<div class="reaction-buttons" data-article="cikk2">
+  <button class="reaction-button like-btn">👍 Tetszik <span class="reaction-count like-count">0</span></button>
+  <button class="reaction-button dislike-btn">👎 Nem tetszik <span class="reaction-count dislike-count">0</span></button>
+</div>
+
+<div class="comment-box" data-article="cikk2">
+  <h3>Szólj hozzá a cikkhez:</h3>
+  <textarea placeholder="Írd meg a véleményed..."></textarea>
+  <button class="submit-comment">Hozzászólás küldése</button>
+
+  <div class="comments-list"></div>
+</div>
+
+
+    </div>
+  </div>
+
+
+  <!-- CIKK 3 -->
+  <div id="cikk-3" class="blog-article">
+    <div class="blog-article-header">
+      <h2>Halloweeni parti az EbWare-nél</h2>
+      <div class="blog-article-meta">
+        2025. október 31. • <span class="blog-tag">Eseménybeszámoló</span>
+      </div>
+    </div>
+
+    <div class="blog-article-image">
+      <img src="assets/images/costumed-dog-halloween.jpg" alt="Jelmezes kutya Halloween bulin">
+    </div>
+
+    <div class="blog-article-body">
+      <p>
+        Idén is megrendeztük a hagyományos Halloweeni kutyabulinkat, ahol a gazdik és kedvenceik közösen élvezhették a
+        vidám, mégis biztonságos hangulatú programokat. Volt jelmezverseny, fotózás, ügyességi pálya és rengeteg jutifalat.
+      </p>
+
+      <h3>Fantasztikus jelmezek minden méretben</h3>
+      <p>
+        A klasszikus csontváz- és vámpírjelmezektől kezdve egészen a vicces hot-dog és tökjelmezekig szinte mindent láttunk.
+        A zsűri dolga egyáltalán nem volt könnyű, hiszen minden kutyusban megvolt az egyedi varázs.
+      </p>
+
+      <h3>Biztonság mindenek felett</h3>
+      <p>
+        Ügyeltünk rá, hogy a jelmezek ne akadályozzák a kutyák mozgását, és ne okozzanak számukra kellemetlenséget.
+        A gazdikat előzetesen tájékoztattuk arról, mire érdemes figyelni jelmezválasztáskor.
+      </p>
+
+      <h3>Közösségépítés gazdiknak és kutyáknak</h3>
+      <p>
+        A rendezvény remek alkalom volt arra, hogy a gazdik találkozzanak, tapasztalatot cseréljenek, a kutyák pedig
+        új barátságokat kössenek. Számunkra fontos, hogy a panzió és a közösség ne csak szolgáltatás legyen, hanem élmény is.
+      </p>
+
+      <!-- REACTION + COMMENTS (CIKK 3) -->
+<div class="reaction-buttons" data-article="cikk3">
+  <button class="reaction-button like-btn">👍 Tetszik <span class="reaction-count like-count">0</span></button>
+  <button class="reaction-button dislike-btn">👎 Nem tetszik <span class="reaction-count dislike-count">0</span></button>
+</div>
+
+<div class="comment-box" data-article="cikk3">
+  <h3>Szólj hozzá a cikkhez:</h3>
+  <textarea placeholder="Írd meg a véleményed..."></textarea>
+  <button class="submit-comment">Hozzászólás küldése</button>
+
+  <div class="comments-list"></div>
+</div>
+
+
+    </div>
+  </div>
+
+
+  <!-- CIKK 4 -->
+  <div id="cikk-4" class="blog-article">
+    <div class="blog-article-header">
+      <h2>Karácsony kedvencekkel</h2>
+      <div class="blog-article-meta">
+        2025. december 24. • <span class="blog-tag">Ünnepi tippek</span>
+      </div>
+    </div>
+
+    <div class="blog-article-image">
+      <img src="assets/images/christmas.jpg" alt="Karácsonyi hangulatban lévő kutya és gazdi">
+    </div>
+
+    <div class="blog-article-body">
+      <p>
+        A karácsony az egyik legmeghittebb időszak az évben, és sokunk számára a kutya is a család teljes jogú tagja. Éppen
+        ezért fontos, hogy az ünnepi készülődés ne csak rólunk, hanem róluk is szóljon – biztonságban, nyugalomban.
+      </p>
+
+      <h3>Biztonságos karácsonyfa és díszek</h3>
+      <p>
+        A csillogó gömbök, fények és díszek nagyon csábítók lehetnek egy kíváncsi kutyának. Érdemes stabilan rögzíteni a
+        fát, a törékeny díszeket pedig magasabbra helyezni, ahol nem éri el a kutya.
+      </p>
+
+      <h3>Ünnepi falatok – mivel kínálhatod és mivel nem?</h3>
+      <p>
+        Sok karácsonyi étel (csokoládé, fűszeres, zsíros fogások, csontok) kimondottan veszélyes lehet a kutyák számára.
+        Ha szeretnél „karácsonyi menüt” a kutyádnak, inkább kifejezetten állatoknak való jutifalatot vagy speciális tápot válassz.
+      </p>
+
+      <h3>Nyugodt sarok a forgatagban</h3>
+      <p>
+        Az ünnepi jövés-menés, vendégek, hangzavar sok kutyát stresszelhet. Jó, ha van egy saját, nyugodt kuckója, ahova
+        visszavonulhat, ha elege van a nyüzsgésből.
+      </p>
+
+      <h3>Ajándék a kutyának is</h3>
+      <p>
+        Egy új játék, fekhely vagy jutalomfalat nem csak „cukiság”, hanem közös élmény is lehet. A legnagyobb ajándék
+        számára azonban az, hogy együtt vagytok – ezt semmi nem pótolja.
+      </p>
+
+      <p><strong>Üzenet az ünnepre:</strong> a karácsony nem az ajándékokról, hanem az együtt töltött időről szól – és ebbe
+      a négylábú családtagok is beletartoznak.</p>
+
+      <!-- REACTION + COMMENTS (CIKK 4) -->
+<div class="reaction-buttons" data-article="cikk4">
+  <button class="reaction-button like-btn">👍 Tetszik <span class="reaction-count like-count">0</span></button>
+  <button class="reaction-button dislike-btn">👎 Nem tetszik <span class="reaction-count dislike-count">0</span></button>
+</div>
+
+<div class="comment-box" data-article="cikk4">
+  <h3>Szólj hozzá a cikkhez:</h3>
+  <textarea placeholder="Írd meg a véleményed..."></textarea>
+  <button class="submit-comment">Hozzászólás küldése</button>
+
+  <div class="comments-list"></div>
+</div>
+
+
+    </div>
+  </div>
+
+</div>
+
+
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.15s">
+          <div class="section-heading">
+            <h2>Fordoluljon hozzánk bizalommal bármilyen egyedi kérés esetén</h2>
+            <h5>Kedvencének különleges táp kell, netán orvosi ellátásra van szüksége? Több kutyát hozna egyszerre? Mi segítünk, lépjen velünk kapcsolatba!</h5>
+            <div class="phone-info">
+              <h4>Hívjon minket bizalommal: <span><i class="fa fa-phone"></i> <a href="#">+36-20-1234-5678</a></span></h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 wow fadeInRight" data-wow-duration="0.5s" data-wow-delay="0.15s">
+          <form id="contact" action="" method="post">
+            <div class="row">
+              <div class="col-lg-6">
+                <fieldset>
+                  <input type="name" name="name" id="name" placeholder="Vezetéknév" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-6">
+                <fieldset>
+                  <input type="surname" name="surname" id="surname" placeholder="Keresztnév" autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="email cím" required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <textarea name="message" type="text" class="form-control" id="message" placeholder="Üzenet" required=""></textarea>  
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="main-button ">Üzenet küldése</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.15s">
+          <p>© <span id="year"></span> EbWare Kft. Minden jog fenntartva.</p> 
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Scripts -->
+   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/animation.js"></script>
+  <script src="assets/js/imagesloaded.js"></script>
+  <script src="assets/js/templatemo-custom.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* =======================
+     LIKE & DISLIKE
+     ======================= */
+
+  document.querySelectorAll(".reaction-buttons").forEach(section => {
+    const article = section.dataset.article;
+    const likeBtn = section.querySelector(".like-btn");
+    const dislikeBtn = section.querySelector(".dislike-btn");
+    const likeCount = section.querySelector(".like-count");
+    const dislikeCount = section.querySelector(".dislike-count");
+
+    function loadReactions() {
+      likeCount.textContent = localStorage.getItem(article + "_likes") || 0;
+      dislikeCount.textContent = localStorage.getItem(article + "_dislikes") || 0;
+      const state = localStorage.getItem(article + "_reaction");
+
+      likeBtn.classList.toggle("active-like", state === "like");
+      dislikeBtn.classList.toggle("active-dislike", state === "dislike");
+    }
+    loadReactions();
+
+    likeBtn.addEventListener("click", () => {
+      const current = localStorage.getItem(article + "_reaction");
+      let likes = parseInt(localStorage.getItem(article + "_likes") || 0);
+      let dislikes = parseInt(localStorage.getItem(article + "_dislikes") || 0);
+
+      if (current === "like") {
+        likes--;
+        localStorage.removeItem(article + "_reaction");
+      } else {
+        likes++;
+        if (current === "dislike") dislikes--;
+        localStorage.setItem(article + "_reaction", "like");
+      }
+
+      localStorage.setItem(article + "_likes", likes);
+      localStorage.setItem(article + "_dislikes", dislikes);
+      loadReactions();
+    });
+
+    dislikeBtn.addEventListener("click", () => {
+      const current = localStorage.getItem(article + "_reaction");
+      let likes = parseInt(localStorage.getItem(article + "_likes") || 0);
+      let dislikes = parseInt(localStorage.getItem(article + "_dislikes") || 0);
+
+      if (current === "dislike") {
+        dislikes--;
+        localStorage.removeItem(article + "_reaction");
+      } else {
+        dislikes++;
+        if (current === "like") likes--;
+        localStorage.setItem(article + "_reaction", "dislike");
+      }
+
+      localStorage.setItem(article + "_likes", likes);
+      localStorage.setItem(article + "_dislikes", dislikes);
+      loadReactions();
+    });
+  });
+
+
+  /* =======================
+     HOZZÁSZÓLÁSOK
+     ======================= */
+
+  document.querySelectorAll(".comment-box").forEach(box => {
+    const article = box.dataset.article;
+    const textarea = box.querySelector("textarea");
+    const submitBtn = box.querySelector(".submit-comment");
+    const list = box.querySelector(".comments-list");
+
+    function loadComments() {
+      list.innerHTML = "";
+      const comments = JSON.parse(localStorage.getItem(article + "_comments") || "[]");
+
+      comments.forEach((text, index) => {
+        const div = document.createElement("div");
+        div.className = "comment";
+
+        div.innerHTML = `
+          <div class="comment-text">${text}</div>
+          <button class="comment-delete" data-index="${index}">×</button>
+        `;
+
+        list.appendChild(div);
+      });
+    }
+    loadComments();
+
+    submitBtn.addEventListener("click", () => {
+      const text = textarea.value.trim();
+      if (!text) return;
+
+      const comments = JSON.parse(localStorage.getItem(article + "_comments") || "[]");
+      comments.push(text);
+      localStorage.setItem(article + "_comments", JSON.stringify(comments));
+
+      textarea.value = "";
+      loadComments();
+    });
+
+    list.addEventListener("click", e => {
+      if (e.target.classList.contains("comment-delete")) {
+        const index = e.target.dataset.index;
+        const comments = JSON.parse(localStorage.getItem(article + "_comments") || "[]");
+        comments.splice(index, 1);
+        localStorage.setItem(article + "_comments", JSON.stringify(comments));
+        loadComments();
+      }
+    });
+  });
+
+});
+</script>
+
+</body>
+</html>
